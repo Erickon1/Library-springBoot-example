@@ -14,43 +14,43 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import mx.erick.library.domain.Book;
-import mx.erick.library.dto.BookDto;
-import mx.erick.library.service.interfaces.BookServiceI;
+import mx.erick.library.domain.Author;
+import mx.erick.library.dto.AuthorDto;
+import mx.erick.library.service.interfaces.AuthorServiceI;
 
 @RestController
-@RequestMapping("book")
-public class BookController {
+@RequestMapping("author")
+public class AuthorController {
 	
 	@Autowired
-	BookServiceI bookService;
-
+	AuthorServiceI service;
+	
 	@GetMapping()
-	public ResponseEntity<List<Book>> index(){
-		return new ResponseEntity<>( bookService.getAll(), HttpStatus.ACCEPTED);
+	public ResponseEntity<List<Author>> index(){
+		return new ResponseEntity<>( service.getAll(), HttpStatus.ACCEPTED);
 	}
 	
 	@GetMapping("/{id}")
-	public ResponseEntity<Book> show(
+	public ResponseEntity<Author> show(
 			@PathVariable Long id ){
-		return new ResponseEntity<>( bookService.get(id), HttpStatus.OK);
+		return new ResponseEntity<>( service.get(id), HttpStatus.OK);
 	}
 	
 	@PostMapping()
-	public ResponseEntity<Book> save(@RequestBody BookDto dto){
-		return new ResponseEntity<>( bookService.save(dto), HttpStatus.CREATED);
+	public ResponseEntity<Author> save(@RequestBody AuthorDto dto){
+		return new ResponseEntity<>( service.save(dto), HttpStatus.CREATED);
 	}
 	
 	@PutMapping("/{id}")
-	public ResponseEntity<Book> update(
-			@PathVariable Long id, @RequestBody BookDto dto ){
-		return new ResponseEntity<>( bookService.update(id, dto), HttpStatus.ACCEPTED);
+	public ResponseEntity<Author> update(
+			@PathVariable Long id, @RequestBody AuthorDto dto ){
+		return new ResponseEntity<>( service.update(id, dto), HttpStatus.ACCEPTED);
 	}
 	
 	@DeleteMapping("/{id}")
 	public ResponseEntity<String> delete( @PathVariable Long id ){
-		bookService.delete(id);
-		return new ResponseEntity<>( "Book was deleted.", HttpStatus.ACCEPTED);
+		service.delete(id);
+		return new ResponseEntity<>( "Author was deleted.", HttpStatus.ACCEPTED);
 	}
-	
+
 }

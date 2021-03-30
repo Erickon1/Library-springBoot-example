@@ -10,4 +10,10 @@ public interface BookServiceI {
 	public List<Book> getAll();
 
 	public Book save(BookDto dto);
+
+	public Book get(Long id);
+
+	public Book update(Long id, BookDto dto);
+
+	public void delete(Long id);
 }

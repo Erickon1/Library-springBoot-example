@@ -1,6 +1,5 @@
 package mx.erick.library.dto;
 
-
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.ToString;
@@ -8,11 +7,10 @@ import lombok.ToString;
 @Data
 @AllArgsConstructor
 @ToString(includeFieldNames = true)
-public class BookDto {
+public class AuthorDto {
 	
 	public String name;
-	private Long authorId;
 	
-	public BookDto(){}
+	public AuthorDto(){}
 
 }
