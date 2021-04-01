@@ -21,7 +21,7 @@ import lombok.ToString;
 @AllArgsConstructor
 @Builder
 @ToString(includeFieldNames = true)
-public class Book {
+public class Book extends AuditModel{
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
