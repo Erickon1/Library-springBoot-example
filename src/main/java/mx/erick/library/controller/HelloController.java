@@ -24,7 +24,8 @@ public class HelloController {
 	@GetMapping(value = "/{age}")
 	public ResponseEntity<String> grettings(
 			@PathVariable("age") int age,
-			@RequestParam(value = "name", required = true) String name ) {
+			@RequestParam(value = "name", required = true) String name ) 
+					throws Exception {
 		return new ResponseEntity<>( helloService.grettings(name,age), HttpStatus.ACCEPTED );
 	}
 	
