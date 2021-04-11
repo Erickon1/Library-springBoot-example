@@ -31,7 +31,14 @@ public class HelloController {
 	
 	@GetMapping(value = "/")
 	public ResponseEntity<String> client() {
-		return new ResponseEntity<>( restClient.get("/posts/1"), HttpStatus.OK );
+		String response = restClient.get("/posts/1");
+		System.out.println(response);
+		
+		if (response == null || response.isEmpty()) {
+			return new ResponseEntity<>( "Error" , HttpStatus.BAD_REQUEST );
+		}else {
+			return new ResponseEntity<>( "Hello, World" , HttpStatus.OK );
+		}
 	}
 
 }

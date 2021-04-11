@@ -32,6 +32,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
 		.antMatchers(HttpMethod.POST,"/book/**").hasAnyRole("ADMIN","USER")
 		.antMatchers(HttpMethod.PUT,"/book/**").hasRole("ADMIN")
 		.antMatchers(HttpMethod.DELETE,"/book/**").hasRole("ADMIN")
+		.antMatchers(HttpMethod.GET,"/**").hasRole("ANONYMOUS")
 		.anyRequest().authenticated()
 		.and()
 		.csrf().disable()
