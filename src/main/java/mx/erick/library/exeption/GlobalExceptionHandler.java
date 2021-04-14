@@ -50,7 +50,7 @@ public class GlobalExceptionHandler {
 
 
 	@ExceptionHandler(Exception.class)
-	protected ResponseEntity<?> globalException(
+	protected ResponseEntity<ErrorDetails> globalException(
 			Exception exception, WebRequest request, Locale locale) {
 		String debugMessage = exception.getMessage();
 		String message = "errorGeneral";

@@ -30,8 +30,13 @@ public class HelloController {
 	}
 	
 	@GetMapping(value = "/")
-	public ResponseEntity<String> client() {
-		String response = restClient.get("/posts/1");
+	public ResponseEntity<String> client(
+			@RequestParam(value = "uri", required = false) String uri) 
+					throws Exception {
+		
+		uri = uri != null ? uri : "/posts/1";
+		System.out.println(uri);
+		String response = restClient.get( uri );
 		System.out.println(response);
 		
 		if (response == null || response.isEmpty()) {

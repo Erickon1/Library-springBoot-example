@@ -6,6 +6,7 @@ import org.springframework.http.HttpMethod;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
+import org.springframework.web.client.RestClientException;
 import org.springframework.web.client.RestTemplate;
 
 @Service
@@ -23,7 +24,10 @@ public class RestClient {
     headers.add("Accept", "*/*");
   }
 
-  public String get(String uri) {
+  public String get(String uri) throws Exception {
+	if(uri.equals("exception")) {
+		throw new RestClientException("client.error");
+	}
     HttpEntity<String> requestEntity = new HttpEntity<String>("", headers);
     ResponseEntity<String> responseEntity = rest.exchange(server + uri, HttpMethod.GET, requestEntity, String.class);
     this.setStatus(responseEntity.getStatusCode());
