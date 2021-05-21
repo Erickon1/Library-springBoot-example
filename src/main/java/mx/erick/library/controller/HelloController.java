@@ -11,6 +11,15 @@ import org.springframework.web.bind.annotation.RestController;
 import mx.erick.library.service.RestClient;
 import mx.erick.library.service.interfaces.HelloServiceI;
 
+import java.io.IOException;
+import okhttp3.MediaType;
+import okhttp3.OkHttpClient;
+import okhttp3.Request;
+import okhttp3.RequestBody;
+import okhttp3.ResponseBody;
+import okhttp3.Response;
+
+
 @RestController
 public class HelloController {
 	
@@ -44,6 +53,23 @@ public class HelloController {
 		}else {
 			return new ResponseEntity<>( "Hello, World" , HttpStatus.OK );
 		}
+	}
+	
+	@GetMapping(value = "/clientHttp")
+	public ResponseEntity<String> clientHttp() throws Exception{
+		String response = clientCall();
+		return new ResponseEntity<String>(response, HttpStatus.OK);
+	}
+
+	private String clientCall() throws IOException  {
+		OkHttpClient client = new OkHttpClient();
+		Request request = new Request.Builder()
+		  .url("https://jsonplaceholder.typicode.com/comments?postId=1")
+		  .get()
+		  .build();
+		Response response = client.newCall(request).execute();
+		ResponseBody rb = response.body();
+		return rb.string();
 	}
 
 }

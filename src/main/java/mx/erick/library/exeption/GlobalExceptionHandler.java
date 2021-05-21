@@ -14,10 +14,12 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
+import org.springframework.web.bind.annotation.RestControllerAdvice;
 import org.springframework.web.context.request.WebRequest;
 
 
 @ControllerAdvice
+//@RestControllerAdvice
 public class GlobalExceptionHandler {
 	
 
@@ -55,7 +57,7 @@ public class GlobalExceptionHandler {
 		String debugMessage = exception.getMessage();
 		String message = "errorGeneral";
 		List<MessageError> messages = Arrays.asList(new MessageError(message, debugMessage));
-		ErrorDetails errorDetails = new ErrorDetails(messages, HttpStatus.BAD_REQUEST);
+		ErrorDetails errorDetails = new ErrorDetails(messages, HttpStatus.NOT_ACCEPTABLE);
 		return new ResponseEntity<>(errorDetails, errorDetails.getStatus());
 	}
 

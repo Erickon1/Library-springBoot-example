@@ -25,6 +25,10 @@ dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter-web'
 	//implementation 'org.liquibase:liquibase-core'
 	
+	//http client
+	implementation("com.squareup.okhttp3:okhttp")
+	
+	
 	compileOnly 'org.projectlombok:lombok'
 	runtimeOnly 'mysql:mysql-connector-java'
 	annotationProcessor 'org.projectlombok:lombok'

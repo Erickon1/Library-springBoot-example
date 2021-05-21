@@ -11,22 +11,25 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
+import lombok.ToString;
 
 @Entity
-@AllArgsConstructor
-@NoArgsConstructor
+@Data
 @Builder
 @EqualsAndHashCode(callSuper = false)
-@Data
-public class Author  extends AuditModel {
-
+@AllArgsConstructor
+@NoArgsConstructor
+@ToString(includeFieldNames = true)
+public class User extends AuditModel{
+	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Long id;
+	 private Long id;
 	
 	@Column(nullable = false)
 	private String name;
 	
-
+	@Column(nullable = false, unique = true)
+	private String email;
 	
 }
